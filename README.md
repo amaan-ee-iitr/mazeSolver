@@ -1,61 +1,66 @@
-# Autonomous Maze Solving Robot Simulation
+# MazeSolver
 
-This repository contains the code to produce a **Gazebo Classic Simulation** of a robot that navigates its way through a simple maze **autonomously**.
+This repository contains the code to run a simulation of a TurtleBot3 solving a maze using **Gazebo Classic** and **ROS 2 Humble**.
 
-Operating System :
-- Ubuntu (*you can use the latest version available*) 
+---
 
-## Deployment
+## 🚀 Deployment Instructions
 
-To deploy this project, please follow the below mentioned steps.
+Follow the steps below to set up and run the project.
 
+### 1. Clone the Repository
 
+Open a terminal in the directory where you want to clone the project and run:
 
-- Open a **new terminal** inside the folder.
+```bash
+gh repo clone amaan-ee-iitr/mazeSolver
+cd mazeSolver/
+```
 
-- **Clone this repository** inside the folder by running the following terminal command.
+### 2. Build the Project
 
-    ```bash
-    gh repo clone amaan-ee-iitr/mazeSolver
-    ```
+Run the following command to build the project using `colcon`:
 
-- This will create a new folder named **mazeSolver**.
+```bash
+colcon build
+```
 
-- Go inside the **mazeSolver** folder through the previously opened terminal.
+This will create three new folders inside the `mazeSolver` directory: `build`, `install`, and `log`.
 
-    ```
-    cd mazeSolver/
-    ```
+> ✅ Once the build is complete, close this terminal.
 
-- Next, we need to build this project, run the following command to build this project
+### 3. Launch the Simulation
 
-    ```bash
-    colcon build
-    ```
-    
-    This will generate 3 (three) new folders inside the **mazeSolver** folder namely - **build**, **install** and **log**.
+Open a **new terminal**, navigate to the `mazeSolver` directory, and run:
 
-- Close the previous terminal.
+```bash
+source install/setup.bash
+ros2 launch turtlebot tb3_maze_navigation.launch.py
+```
 
-- Next, deploy the project
-    
-    - Open a new terminal inside the **mazeSolver** directory and run the following commands:
-        ```bash
-        source install/setup.bash
-        ros2 launch turtlebot tb3_maze_navigation.launch.py
-        ```
+This will launch the Gazebo Classic simulation environment.
 
-  
+### 4. Start the Maze Solver Node
 
+Open a **second terminal** (do not close the previous one), navigate to the `mazeSolver` directory again, and run:
 
-    - Open a second parallel terminal inside the **mazeSolver** directory (while keeping the previous terminal alive) and run the following command from it :
-        ```bash
-        source install/setup.bash
-        ros2 turtlebot maze_solver.py
-        ```
+```bash
+source install/setup.bash
+ros2 run turtlebot maze_solver.py
+```
 
-## References
+---
 
-- [Official Github Account of Robotis: ROBOTIS-GIT](https://github.com/ROBOTIS-GIT)
-- [Official Github Account of ROS Planning: ros-planning ](https://github.com/ros-planning)
- 
+## 🧪 Output
+
+After deployment, you will see the simulation in **Gazebo Classic**. Additionally, **RViZ2** will open alongside to visualize the 2D maze map.
+
+> 🎯 Define the starting point of the TurtleBot using the `2D Pose Estimate` tool in RViz2.
+
+The robot will then begin navigating the maze autonomously.
+
+---
+
+## 📚 References
+
+- [ROBOTIS-GIT Official GitHub](https://github.com/ROBOTIS-GIT)
